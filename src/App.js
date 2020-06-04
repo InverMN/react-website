@@ -1,7 +1,9 @@
-import './App.css';
+import './App.css'
+import React from 'react'
+import PageWrapper from './components/PageWrapper'
 
 function App() {
-  return null
+  return ( <PageWrapper /> )
 }
 
 export default App
