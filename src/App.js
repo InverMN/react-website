@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import PageWrapper from './components/PageWrapper'
 import Home from './components/pages/Home'
 import Services from './components/pages/Services'
+import About from './components/pages/About'
 
 function App() {
   return ( 
@@ -18,6 +19,10 @@ function App() {
 				<Route 
 					path="/services"
 					component={Services}
+				/>
+				<Route 
+					path="/about"
+					component={About}
 				/>
 			</PageWrapper> 
 		</Router>
