@@ -6,6 +6,7 @@ class PageWrapper extends Component {
 		return (
 			<div id="page-top">
 				<Nav/>
+				{this.props.children}
 			</div>
 		)
 	}
