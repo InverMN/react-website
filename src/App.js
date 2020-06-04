@@ -2,7 +2,7 @@ import './App.css'
 import React from 'react'
 import PageWrapper from './components/PageWrapper'
 import Home from './components/pages/Home'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
   return ( 
@@ -10,6 +10,7 @@ function App() {
 			<PageWrapper>
 				<Route 
 					path="/"
+					exact={true}
 					component={Home}
 				/>
 			</PageWrapper> 
