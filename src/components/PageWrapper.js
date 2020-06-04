@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Nav from './Nav'
-import Footer from './Footer'
+import Nav from './common/Nav'
+import Footer from './common/Footer'
 
 class PageWrapper extends Component {
 	render() {
