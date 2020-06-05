@@ -1,0 +1,17 @@
+[
+	{
+		"image": "assets/img/team/1.jpg",
+		"name": "Kay Garland",
+		"role": "Lead Designer"
+	},
+	{
+		"image": "assets/img/team/2.jpg",
+		"name": "Larry Parker",
+		"role": "Lead Marketer"
+	},
+	{
+		"image": "assets/img/team/3.jpg",
+		"name": "Diana Petersen",
+		"role": "Lead Developer"
+	}
+]
