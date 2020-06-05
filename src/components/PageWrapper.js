@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './common/Nav'
 import Footer from './common/Footer'
+import Clients from './common/Clients'
 
 class PageWrapper extends Component {
 	render() {
@@ -8,6 +9,7 @@ class PageWrapper extends Component {
 			<div id="page-top">
 				<Nav/>
 				{this.props.children}
+				<Clients/>
 				<Footer/>
 			</div>
 		)
