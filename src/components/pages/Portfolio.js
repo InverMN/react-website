@@ -20,9 +20,7 @@ class Portfolio extends Component {
 						</div>
 						<div className="row">
 							{
-								elements.map((item, id) => {
-									return <PortfolioItem {...item} key={id}/>
-								})
+								elements.map((item, id) => <PortfolioItem {...item} key={id}/> )
 							}
 						</div>
 					</div>
