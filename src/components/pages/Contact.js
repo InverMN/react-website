@@ -1,22 +1,8 @@
 import React, { Component } from 'react'
+import Field from '../common/Field'
+import { withFormik } from 'formik'
 
 class Contact extends Component {
-	constructor(props) {
-		super(props)
-
-		this.state = {
-			name: '',
-			email: '',
-			phone: '',
-			message: ''
-		}
-	}
-
-	submit = e => {
-		e.preventDefault()
-		alert("Form submitted!")
-	}
-
 	render() {
 		return (
 			<section className="page-section" id="contact">
@@ -25,27 +11,39 @@ class Contact extends Component {
 						<h2 className="section-heading text-uppercase">Contact Us</h2>
 						<h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
 					</div>
-					<form id="contactForm" name="sentMessage" noValidate onSubmit={e => this.submit(e)}>
+					<form id="contactForm" name="sentMessage" noValidate onSubmit={this.props.handleSubmit}>
 						<div className="row align-items-stretch mb-5">
 							<div className="col-md-6">
-								<div className="form-group">
-									<input className="form-control" id="name" type="text" placeholder="Your Name *" required data-validation-required-message="Please enter your name." value={this.state.name} onChange={e =>  this.setState({name: e.target.value})}/>
-									<p className="help-block text-danger"></p>
-								</div>
-								<div className="form-group">
-									<input className="form-control" id="email" type="email" placeholder="Your Email *" required data-validation-required-message="Please enter your email address." value={this.state.email} onChange={e => this.setState({email: e.target.value})}/>
-									<p className="help-block text-danger"></p>
-								</div>
-								<div className="form-group mb-md-0">
-									<input className="form-control" id="phone" type="tel" placeholder="Your Phone *" required data-validation-required-message="Please enter your phone number." value={this.state.phone} onChange={e => this.setState({phone: e.target.value})}/>
-									<p className="help-block text-danger"></p>
-								</div>
+								<Field 
+									name="name"
+									values={this.props.values} 
+									handleChange={this.props.handleChange}
+									onBlur={this.props.handleBlur}
+									touched={this.props.touched}
+									errors={this.props.errors}/>
+								<Field 
+									name="email"
+									type="email"
+									values={this.props.values} 
+									handleChange={this.props.handleChange}
+									touched={this.props.touched}
+									errors={this.props.errors}/>
+								<Field 
+									name="phone"
+									type="tel"
+									values={this.props.values} 
+									handleChange={this.props.handleChange}
+									touched={this.props.touched}
+									errors={this.props.errors}/>
 							</div>
 							<div className="col-md-6">
-								<div className="form-group form-group-textarea mb-md-0">
-									<textarea className="form-control" id="message" placeholder="Your Message *" required data-validation-required-message="Please enter a message." value={this.state.message} onChange={e => this.setState({message: e.target.value})}/>
-									<p className="help-block text-danger"></p>
-								</div>
+								<Field 
+									name="message"
+									type="textarea"
+									values={this.props.values} 
+									handleChange={this.props.handleChange}
+									touched={this.props.touched}
+									errors={this.props.errors}/>
 							</div>
 						</div>
 						<div className="text-center">
@@ -59,4 +57,21 @@ class Contact extends Component {
 	}
 }
 
-export default Contact
+export default withFormik({
+	mapPropsToValues: () => ({
+		name: '',
+		email: '',
+		phone: '',
+		message: ''
+	}),
+	validate: values => {
+		const errors = {}
+
+		Object.keys(values).map(v => (!values[v]) ? errors[v] = `Required` : null )
+
+		return errors
+	},
+	handleSubmit: (values, {setSubmitting }) => {
+		alert('You have submitted the form!')
+	}
+})(Contact)
