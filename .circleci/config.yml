@@ -5,5 +5,4 @@ jobs:
       - image: node:14.10.1
     steps:
       - checkout
-      - run: echo "hello world"
-      - run: echo "hello again"
+      - run: npm run build
