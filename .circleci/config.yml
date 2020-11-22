@@ -12,12 +12,12 @@ jobs:
         root: /root/project
         paths:
           - "build"
+          - "Dockerfile"
   publish:
     docker:
     - image: cimg/base:2020.11
     resource_class: small
     steps:
-    - run: pwd
     - attach_workspace:
         at: ./
     - setup_remote_docker:
