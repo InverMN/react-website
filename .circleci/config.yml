@@ -17,8 +17,9 @@ jobs:
     - image: cimg/base:2020.11
     resource_class: small
     steps:
+    - run: pwd
     - attach_workspace:
-        at: /root/project
+        at: ./
     - setup_remote_docker:
         docker_layer_caching: false
         version: 19.03.13
