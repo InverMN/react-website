@@ -8,9 +8,8 @@ jobs:
     - checkout
     - run: npm install
     - run: npm run build
-    - run: pwd
     - persist_to_workspace:
-        root: /home/circleci/project
+        root: /root/project
         paths:
           - "build"
   publish:
@@ -19,7 +18,7 @@ jobs:
     resource_class: small
     steps:
     - attach_workspace:
-        at: /home/circleci/project
+        at: /root/project
     - setup_remote_docker:
         docker_layer_caching: false
     - run: |
@@ -29,7 +28,7 @@ jobs:
         echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
         docker tag $REPO:$TAG $REPO:latest
         docker push $REPO:$TAG
-        docker push $REPO:lates
+        docker push $REPO:latest
 
 workflows:
   regular:
