@@ -24,8 +24,9 @@ jobs:
     - run: |
         $REPO=invermn/react-website
         $TAG=1.0.$CIRCLE_BUILD_NUM
-        docker build -t $REPO:$TAG .
-        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+    - run: docker build -t $REPO:$TAG .
+    - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+    - run: |
         docker tag $REPO:$TAG $REPO:latest
         docker push $REPO:$TAG
         docker push $REPO:latest
