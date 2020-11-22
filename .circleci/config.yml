@@ -8,6 +8,7 @@ jobs:
     - checkout
     - run: npm install
     - run: npm run build
+    - run: pwd
     - persist_to_workspace:
         root: /home/circleci/project
         paths:
