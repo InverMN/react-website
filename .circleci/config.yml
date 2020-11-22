@@ -14,7 +14,7 @@ jobs:
           - "build"
   publish:
     docker:
-    - image: cimg/base
+    - image: cimg/base:2020.11
     resource_class: small
     steps:
     - attach_workspace:
