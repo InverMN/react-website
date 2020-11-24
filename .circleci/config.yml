@@ -42,7 +42,7 @@ jobs:
     - run: |
         curl --header "Content-Type: application/json" \
         --request POST \
-        --data "{\"owner\":\"${CIRCLE_PROJECT_USERNAME}\"}" \
+        --data "{\"owner\":\"${CIRCLE_PROJECT_USERNAME}\",\"status\":\"success\"}" \
         https://enm80iuzvo27wof.m.pipedream.net
 
 workflows:
