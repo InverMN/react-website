@@ -32,6 +32,7 @@ jobs:
         version: 19.03.13
     - run: ls
     - run: docker --help
+    - run: exit 1
     - run: |
         TAG=$VERSION.$CIRCLE_BUILD_NUM
         docker build -t $REPO:$TAG .
@@ -39,7 +40,6 @@ jobs:
         docker tag $REPO:$TAG $REPO:latest
         docker push $REPO:$TAG
         docker push $REPO:latest
-    - run: exit 1
     - run: 
         command: |
           curl --header "Content-Type: application/json" \
