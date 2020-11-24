@@ -3,6 +3,8 @@ orbs:
 
 version: 2.1  
 
+steps
+
 jobs:
   build:
     docker:
@@ -39,11 +41,21 @@ jobs:
         docker tag $REPO:$TAG $REPO:latest
         docker push $REPO:$TAG
         docker push $REPO:latest
-    - run: |
-        curl --header "Content-Type: application/json" \
-        --request POST \
-        --data "{\"owner\":\"${CIRCLE_PROJECT_USERNAME}\",\"status\":\"success\",\"build\":{\"url\":\"$CIRCLE_BUILD_URL\"},\"repo\":\"$CIRCLE_PROJECT_REPONAME\"}" \
-        https://enm80iuzvo27wof.m.pipedream.net
+    - run: exit 1
+    - run: 
+        command: |
+          curl --header "Content-Type: application/json" \
+          --request POST \
+          --data "{\"owner\":\"${CIRCLE_PROJECT_USERNAME}\",\"status\":\"success\",\"build\":{\"url\":\"$CIRCLE_BUILD_URL\"},\"repo\":\"$CIRCLE_PROJECT_REPONAME\"}" \
+          https://enm80iuzvo27wof.m.pipedream.net
+        when: on_success
+    - run: 
+        command: |
+          curl --header "Content-Type: application/json" \
+          --request POST \
+          --data "{\"owner\":\"${CIRCLE_PROJECT_USERNAME}\",\"status\":\"fail\",\"build\":{\"url\":\"$CIRCLE_BUILD_URL\"},\"repo\":\"$CIRCLE_PROJECT_REPONAME\"}" \
+          https://enm80iuzvo27wof.m.pipedream.net
+        when: on_fail
 
 workflows:
   regular:
